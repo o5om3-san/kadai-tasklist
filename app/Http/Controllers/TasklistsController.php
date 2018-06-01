@@ -104,7 +104,7 @@ class TasklistsController extends Controller
         ]);
        
         $tasklist = Tasklist::find($id);
-        $tasklist->status = $request->title;
+        $tasklist->status = $request->status;
         $tasklist->content = $request->content;
         $tasklist->save();
 
