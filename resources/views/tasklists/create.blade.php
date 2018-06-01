@@ -2,10 +2,10 @@
 
 @section('content')
 
+@include('commons.rowstart')
     <h1>タスク新規作成ページ</h1>
 
 
-    <div class="row">
             {!! Form::model($tasklist, ['route' => 'tasklists.store']) !!}
             
                 <div class="form-group">
@@ -20,7 +20,7 @@
                 
                 {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
         
-            {!! Form::close() !!}
+            {!! Form::close() !!}  
     </div>
-
+@include('commons.rowend')
 @endsection
