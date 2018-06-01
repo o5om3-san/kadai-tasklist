@@ -2,10 +2,8 @@
 
 @section('content')
 
-    <h1>id: {{ $tasklist->id }} タスク編集ページ</h1>
-
-    <div class="row">
-        <div class="col-xs-6">
+        <div class="row">
+        <h1>id: {{ $tasklist->id }} タスク編集ページ</h1>
             {!! Form::model($tasklist, ['route' => ['tasklists.update', $tasklist->id], 'method' => 'put']) !!}
                 <div class="form-group">
                     {!! Form::label('status', 'ステータス:') !!}
@@ -15,8 +13,6 @@
                 <div class="form-group">
                     {!! Form::label('content', 'タスク内容:') !!}
                     {!! Form::text('content', null, ['class' => 'form-control']) !!}
-                </div>
-        
                 {!! Form::submit('更新', ['class' => 'btn btn-default']) !!}
         
             {!! Form::close() !!}
