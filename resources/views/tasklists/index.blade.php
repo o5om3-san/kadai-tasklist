@@ -3,7 +3,6 @@
 @section('content')
 
     <h1>タスク</h1>
-
        @if (count($tasklists) > 0)
         <table class="table table-striped">
             <thead>
