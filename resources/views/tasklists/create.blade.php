@@ -6,7 +6,6 @@
 
 
     <div class="row">
-        <div class="col-xs-6">
             {!! Form::model($tasklist, ['route' => 'tasklists.store']) !!}
             
                 <div class="form-group">
@@ -22,7 +21,6 @@
                 {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
         
             {!! Form::close() !!}
-        </div>
     </div>
 
 @endsection
