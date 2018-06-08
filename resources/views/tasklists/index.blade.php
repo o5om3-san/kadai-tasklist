@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('users.users', ['users' => $users])
 @include('commons.rowstart')
 
     <h1>タスク</h1>
