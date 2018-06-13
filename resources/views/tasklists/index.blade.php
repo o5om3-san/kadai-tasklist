@@ -2,9 +2,7 @@
 
 @section('content')
 
-@include('users.users', ['users' => $users])
 @include('commons.rowstart')
-
     <h1>タスク</h1>
        @if (count($tasklists) > 0)
         <table class="table table-striped">
@@ -28,7 +26,7 @@
         
         @endif
         
-            {!! link_to_route('tasklists.create', ' 新規タスクの投稿', null, ['class' => 'btn btn-primary glyphicon glyphicon-comment'] ) !!}
+        {!! link_to_route('tasklists.create', ' 新規タスクの投稿', null, ['class' => 'btn btn-primary glyphicon glyphicon-comment'] ) !!}
 @include('commons.rowend')
 
 @endsection

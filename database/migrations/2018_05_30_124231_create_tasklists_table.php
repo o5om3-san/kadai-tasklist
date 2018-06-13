@@ -17,7 +17,10 @@ class CreateTasklistsTable extends Migration
             $table->increments('id');
             $table->string('content');
             $table->string('status')->default(0); //status number
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

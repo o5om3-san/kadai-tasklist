@@ -13,6 +13,13 @@ use App\User; // add
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function counts($user) {
+    $count_tasklists = $user->tasklists()->count();
+
+    return [
+    'count_tasklists' => $count_tasklists,
+        ];
+    }
 }
 
 class UsersController extends Controller
