@@ -40,8 +40,7 @@ class TasklistsController extends Controller
             return view('tasklists.index', $data);
         }
         
-
-
+        else return view('tasklists.welcome');
 
     }
 
@@ -74,16 +73,9 @@ class TasklistsController extends Controller
 
         $request->user()->tasklists()->create([
             'content' => $request->content,
+            'status' => $request->status,
         ]);
         
-        $user = \Auth::user();
-        
-        $tasklist = new Tasklist;
-        $tasklist->status = $request->status;
-        $tasklist->content = $request->content;
-        $tasklist->user_id = $user->id;
-        $tasklist->save();
-
         return redirect('/');
     }
 
