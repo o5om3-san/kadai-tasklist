@@ -53,7 +53,7 @@ class TasklistsController extends Controller
         $tasklist = new Tasklist;
 
         
-        if (\Auth::user()->id === $tasklist->user_id){
+        if (\Auth::check()){
             
             return view('tasklists.create', [
             'tasklist' => $tasklist,
