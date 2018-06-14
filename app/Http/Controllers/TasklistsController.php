@@ -18,7 +18,6 @@ class TasklistsController extends Controller
      
     public function welcome()
     {
-        $tasklists = Tasklist::all();
         
         return view ('tasklists.welcome', [
             'tasklists' => $tasklists,
@@ -53,9 +52,16 @@ class TasklistsController extends Controller
     {
         $tasklist = new Tasklist;
 
-        return view('tasklists.create', [
+        
+        if (\Auth::user()->id === $tasklist->user_id){
+            
+            return view('tasklists.create', [
             'tasklist' => $tasklist,
         ]);
+        }
+        else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -88,10 +94,16 @@ class TasklistsController extends Controller
     public function show($id)
     {
         $tasklist = Tasklist::find($id);
-
-        return view('tasklists.show', [
+        
+        if (\Auth::user()->id === $tasklist->user_id){
+            
+            return view('tasklists.show', [
             'tasklist' => $tasklist,
         ]);
+        }
+        else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -103,10 +115,17 @@ class TasklistsController extends Controller
          public function edit($id)
     {
         $tasklist = Tasklist::find($id);
-
-        return view('tasklists.edit', [
+        
+        if (\Auth::user()->id === $tasklist->user_id){
+            
+            return view('tasklists.edit', [
             'tasklist' => $tasklist,
         ]);
+        }
+        
+        else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -123,16 +142,22 @@ class TasklistsController extends Controller
             'content' => 'required|max:191',
         ]);
         
-        $user = \Auth::user();
-       
-        $tasklist = Tasklist::find($id);
-        $tasklist->status = $request->status;
-        $tasklist->content = $request->content;
-        $tasklist->content = $user->id;
-        $tasklist->save();
-
-        return redirect('/');
-    }
+        $tasklist = \App\Tasklist::find($id);
+        
+        if (\Auth::user()->id === $tasklist->user_id){
+        
+        $request->user()->tasklists()->create([
+            'content' => $request->content,
+            'status' => $request->status,
+            ]);
+            
+            return redirect('/');
+        }  
+        else {
+            return redirect('tasklists.index');
+        }
+        
+        }
 
     /**
      * Remove the specified resource from storage.
