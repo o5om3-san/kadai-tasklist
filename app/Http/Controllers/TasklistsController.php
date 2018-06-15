@@ -15,14 +15,6 @@ class TasklistsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     
-    public function welcome()
-    {
-        
-        return view ('tasklists.welcome', [
-            'tasklists' => $tasklists,
-        ]);
-    }
     
     public function index()
     {
@@ -53,7 +45,7 @@ class TasklistsController extends Controller
         $tasklist = new Tasklist;
 
         
-        if (\Auth::check()){
+        if (Auth::user()){
             
             return view('tasklists.create', [
             'tasklist' => $tasklist,
@@ -150,13 +142,8 @@ class TasklistsController extends Controller
             'content' => $request->content,
             'status' => $request->status,
             ]);
-            
-            return redirect('/');
-        }  
-        else {
-            return redirect('tasklists.index');
-        }
-        
+        }            
+        return redirect('/');
         }
 
     /**
